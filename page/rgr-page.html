@@ -1,0 +1,27 @@
+<!-- wp:paragraph {"fontSize":"large"} -->
+<p class="has-large-font-size">Розрахунково-графічна робота з дисципліни «Операційні системи»: розгортання WordPress за допомогою Docker Compose. Виконав <strong>Олег Шотик</strong>, НУ «Львівська політехніка», 2026.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Архітектура</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Сайт працює у трьох контейнерах, з'єднаних мостовою мережею <code>app-network</code>:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<table class="wp-block-table"><tbody><tr><td><strong>Контейнер</strong></td><td><strong>Образ</strong></td><td><strong>Роль</strong></td></tr><tr><td>db-shotyk</td><td>mysql:8.0</td><td>База даних (том dbdata)</td></tr><tr><td>wordpress-shotyk</td><td>wordpress:5.1.1-fpm-alpine</td><td>PHP-FPM, порт 9000</td></tr><tr><td>webserver-shotyk</td><td>nginx:1.15.12-alpine</td><td>Вебсервер, порти 80 → 443, SSL</td></tr></tbody></table>
+<!-- /wp:table -->
+
+<!-- wp:heading -->
+<h2>Що зроблено</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul><li>Локальний домен <code>oleg-shotyk.local</code> у файлі hosts.</li><li>Самопідписаний SSL-сертифікат RSA 2048, створений OpenSSL на 365 днів.</li><li>Nginx перенаправляє HTTP на HTTPS (код 301) і передає PHP-запити до php-fpm.</li><li>Паролі бази даних винесені у файл <code>.env</code>, який не потрапляє в Git і Docker-образи.</li><li>Однакова конфігурація розгорнута на Ubuntu 26.04 і Windows 10; машини з'єднані внутрішньою мережею VirtualBox.</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><p>Docker Compose дозволяє підняти весь стек однією командою <code>docker compose up -d</code> на будь-якій ОС.</p></blockquote>
+<!-- /wp:quote -->
